@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='hanoi_kernel',
+    name='HanoiKernel',
     version='0.1',
     url='https://github.com/babert-Mael/hanoi_kernel',
     author='Babert Maël',
