@@ -17,8 +17,19 @@ class Hanoi:
     def move(self, src, dest):
         """
         
-        :param src: the source of the...
+        :param src: the source of the move, the tower you will move plate from
         :type src: int
+        :param dest: the destination of the move, the tower you will move the plate into
+        :type dest: int
+        
+        :return: return different things in different situation, if its a success, will return a 0, the source and the destination
+        if the game as ended, will return 1, the source and the destination
+        if it's an impossible move (a bigge plate a top a smaller one) wir return 2 and two time the source
+        if the source is the same as the destination will return 3 and two time the soruce
+        if the source is empty will return 4
+        if the soruce or the destination is invalid will return 5
+        will return 6, the source and the destination if the game is a win but not optimal
+        :rtype: tuple
 
         """
         if src not in (1, 2, 3) or dest not in (1, 2, 3): #cas 5
