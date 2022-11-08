@@ -2,7 +2,7 @@ from stack import Stack
 
 class Hanoi:
     """
-    a calss to implement the hanoi tower game
+    a class to implement the hanoi tower game
     """
     
     def __init__(self, n):
@@ -16,19 +16,9 @@ class Hanoi:
         
     def move(self, src, dest):
         """
-        move the plate from source to destination
-        src: integer {1, 2, 3}
-        dest: integer {1, 2, 3}, must be diffenrent from src
-        return a tuple:
-        -first element is the status
-        -second element is the move (a tuple)
-        status:
-        - 0 success, (src, dest)
-        - 1: game over, (src, dest)
-        - 2: impossible move (src, src)
-        - 3: src=dest, (src, src) 
-        - 4: empty stack ()
-        - 5: invalid value
+        
+        :param src: the source of the...
+        :type src: int
 
         """
         if src not in (1, 2, 3) or dest not in (1, 2, 3): #cas 5
@@ -44,9 +34,12 @@ class Hanoi:
             return (3, (src, src))
 
         desti.push(sourc.pop())
-        if mapping[3].size()==self._size: #cas 1
+        if mapping[3].size()==self._size: #cas 1 ou 6
             self._history.append((src, dest))
-            return (1, (src, dest))
+            if len(self.get_history())==(2**self.get_n())-1:
+                return (1, (src, dest))
+            else:
+                return (1, (src, dest))
         self._history.append((src, dest))
         return (0, (src, dest)) #cas 0
         
@@ -55,7 +48,8 @@ class Hanoi:
 
     def get_history(self):
         """
-        a function that return all the move that happend in the game in a list
+        show all the move that happend in the game
+        return a list
         """
         return self._history
     
@@ -75,9 +69,48 @@ class Hanoi:
                      
             
     def get_n(self):
+        """
+        get the initial pile
+        """
         return self._size
         
 
-a=Hanoi(6)
+    def solve_hanoi(self):
+        """
+        will solve the hanoi tower with recursivity
+        """
+        if len(self.show()[0])!=self.get_n():
+            return "impossible: to be solved the first tower must be full"
+        n=self.get_n()
         
-        
+        def _recur_solve(self, n, src, auxi, dest):
+            if n==1: # cas d'arret
+                self.move(src, dest)
+            else:
+                #print(self.show())
+                _recur_solve(self, n-1, src, dest, auxi)
+                
+                self.move(src, dest)
+                _recur_solve(self, n-1, auxi, src, dest)
+                #print(self.show())
+        #call of the recursive function
+        _recur_solve(self,n,1,2,3)
+        return self
+a=Hanoi(3)
+a.move(1,2)
+fin=a.solve_hanoi()
+# 
+# move the plate from source to destination
+#         {1, 2, 3}
+#         dest: integer {1, 2, 3}, must be diffenrent from src
+#         return a tuple:
+#         -first element is the status
+#         -second element is the move (a tuple)
+#         status:
+#         - 0 success, (src, dest)
+#         - 1: game over, (src, dest)
+#         - 2: impossible move (src, src)
+#         - 3: src=dest, (src, src) 
+#         - 4: empty stack ()
+#         - 5: invalid value
+#         - 6: game over but not optimal, (src, dest)

@@ -28,6 +28,15 @@ class StackTests(unittest.TestCase):
         self.assertEqual(status, 1, f"le statut est à 1 il est a {status}")
         self.assertEqual(move, (2,3), f"le déplacement est à 2, 3 il est a {move}")
         
+    def testHanoi_statut1(self):
+            hanoi=Hanoi(2)
+            hanoi.move(1,2)
+            hanoi.move(1,3)
+    #         import pdb; pdb.set_trace()
+            status, move=hanoi.move(2,3)
+            self.assertEqual(status, 1, f"le statut est à 1 il est a {status}")
+            self.assertEqual(move, (2,3), f"le déplacement est à 2, 3 il est a {move}")
+        
     def testHanoi_statut2(self):
         self.hanoi.move(1,3)
         status, move=self.hanoi.move(1,3)
@@ -53,6 +62,7 @@ class StackTests(unittest.TestCase):
         self.assertEqual(status, 5, f"le statut est à 5 il est a {status}")
         
     def testHistory(self):
+        self.hanoi.move(1,3)
         self.hanoi.move(1,3)
         self.hanoi.move(1,2)
         self.hanoi.move(3,2)

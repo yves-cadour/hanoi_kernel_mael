@@ -9,5 +9,5 @@ setup(
     author_email='babert-m@saint-louis29.net',
     description='The core of the hanoi game',
     packages=find_packages(),   
-    install_requires=['Stack'],
+    install_requires=['Stack', 'Sphinx'],
 )
